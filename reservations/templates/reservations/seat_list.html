@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Seat Reservation</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #121212;
+            color: #FFFFFF;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+        }
+        h1 {
+            color: #00E676;
+            margin-top: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #1F1F1F;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 300px;
+        }
+        a {
+            color: #00E676;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            border: 1px solid #00E676;
+        }
+        a:hover {
+            background: #00E676;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    <h1>Available Seats</h1>
+    <ul>
+        {% for seat in seats %}
+            <li>
+                Seat {{ seat.number }} 
+                {% if not seat.is_reserved %}
+                    - <a href="{% url 'reserve_seat' seat.id %}">Reserve</a>
+                {% else %}
+                    - Reserved
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
